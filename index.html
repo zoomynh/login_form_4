@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureApp — Авторизація</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body class="auth-page">
+  <main class="card auth-card">
+    <div class="logo">🔐 SecureApp</div>
+    <p class="subtitle">Шифрування даних у web-застосунку</p>
+
+    <div class="tabs">
+      <button type="button" class="tab active" data-tab="login">Вхід</button>
+      <button type="button" class="tab" data-tab="register">Реєстрація</button>
+    </div>
+
+    <!-- Форма входу -->
+    <form id="loginForm" class="form" novalidate>
+      <label>Логін
+        <input type="text" id="loginName" placeholder="Введіть логін" autocomplete="username">
+        <span class="error" data-for="loginName"></span>
+      </label>
+      <label>Пароль
+        <input type="password" id="loginPassword" placeholder="Введіть пароль" autocomplete="current-password">
+        <span class="error" data-for="loginPassword"></span>
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" id="isAdmin"> Увійти як адміністратор
+      </label>
+      <button type="submit" class="btn">Увійти</button>
+      <div class="message" id="loginMessage"></div>
+    </form>
+
+    <!-- Форма реєстрації -->
+    <form id="registerForm" class="form hidden" novalidate>
+      <label>ПІБ
+        <input type="text" id="regFullName" placeholder="Прізвище Ім'я">
+        <span class="error" data-for="regFullName"></span>
+      </label>
+      <label>Логін
+        <input type="text" id="regLogin" placeholder="Латиниця, цифри, від 3 символів">
+        <span class="error" data-for="regLogin"></span>
+      </label>
+      <label>Email
+        <input type="email" id="regEmail" placeholder="name@example.com">
+        <span class="error" data-for="regEmail"></span>
+      </label>
+      <label>Телефон
+        <input type="tel" id="regPhone" placeholder="+380XXXXXXXXX">
+        <span class="error" data-for="regPhone"></span>
+      </label>
+      <label>Пароль
+        <input type="password" id="regPassword" autocomplete="new-password" placeholder="Від 8 символів, літери та цифри">
+        <span class="error" data-for="regPassword"></span>
+      </label>
+      <label>Підтвердження пароля
+        <input type="password" id="regPassword2" autocomplete="new-password" placeholder="Повторіть пароль">
+        <span class="error" data-for="regPassword2"></span>
+      </label>
+      <button type="submit" class="btn">Зареєструватися</button>
+      <div class="message" id="registerMessage"></div>
+    </form>
+  </main>
+
+  <script src="js/crypto.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

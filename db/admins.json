@@ -1,0 +1,9 @@
+[
+  {
+    "login": "admin",
+    "fullName": "Адміністратор системи",
+    "salt": "HN1+u6Pp5cfWI7C3HY9RpQ==",
+    "passwordHash": "ePBiQLc/D2cI/4zK1Tdsx6figjEo7Va9QT2kE/y+r/0=",
+    "iterations": 100000
+  }
+]

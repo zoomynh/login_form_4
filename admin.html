@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureApp — Адміністратор</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">🔐 SecureApp</div>
+    <div class="who">Адміністратор: <b id="adminName"></b>
+      <button class="btn small" onclick="logout()">Вийти</button></div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Зареєстровані користувачі</h1>
+      <p class="hint">Дані зчитано з LocalStorage та розшифровано ключем AES-256-GCM.
+        Пароль зберігається лише у вигляді хешу PBKDF2-SHA-256.</p>
+      <div class="table-wrap">
+        <table id="usersTable">
+          <thead>
+            <tr><th>№</th><th>ПІБ</th><th>Логін</th><th>Email</th><th>Телефон</th>
+                <th>Хеш пароля</th><th>Дата реєстрації</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="emptyText" class="hint hidden">Користувачів ще немає.</p>
+    </section>
+
+    <section class="card">
+      <h2>Вміст LocalStorage у зашифрованому вигляді</h2>
+      <p class="hint">Ключ <code>secureapp_users</code> — кожен запис має формат <code>IV:шифротекст</code> (base64).</p>
+      <pre id="rawData" class="raw"></pre>
+    </section>
+  </main>
+
+  <script src="js/crypto.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

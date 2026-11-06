@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureApp — Користувач</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">🔐 SecureApp</div>
+    <div class="who">Користувач: <b id="userName"></b>
+      <button class="btn small" onclick="logout()">Вийти</button></div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Симетричне шифрування</h1>
+      <p>Симетричне шифрування — це спосіб захисту інформації, у якому для зашифрування
+        і розшифрування використовується один і той самий секретний ключ. Відправник
+        перетворює відкритий текст <b>M</b> на шифротекст <b>C = E<sub>K</sub>(M)</b>,
+        а отримувач, маючи той самий ключ <b>K</b>, відновлює повідомлення:
+        <b>M = D<sub>K</sub>(C)</b>.</p>
+      <p>Головна перевага таких алгоритмів — висока швидкість, тому їх застосовують для
+        шифрування великих обсягів даних: файлів, дисків, мережевого трафіку (TLS після
+        узгодження ключа). Головна проблема — безпечна передача ключа: якщо зловмисник
+        дізнається ключ, він зможе прочитати всі повідомлення.</p>
+      <h3>Поширені алгоритми</h3>
+      <ul>
+        <li><b>AES</b> (Advanced Encryption Standard) — блоковий шифр із блоком 128 біт і
+          ключами 128/192/256 біт; сучасний стандарт.</li>
+        <li><b>ChaCha20</b> — потоковий шифр, ефективний на пристроях без апаратної підтримки AES.</li>
+        <li><b>3DES</b>, <b>DES</b> — застарілі алгоритми, які не рекомендують для нових систем.</li>
+      </ul>
+      <h3>Як це працює в SecureApp</h3>
+      <p>Ваші реєстраційні дані перед записом у LocalStorage браузера шифруються алгоритмом
+        <b>AES-256</b> у режимі <b>GCM</b>. Для кожного запису генерується випадковий
+        вектор ініціалізації (IV) довжиною 96 біт, тому однакові дані дають різний шифротекст.
+        Режим GCM додатково формує тег автентичності, і будь-яка зміна шифротексту
+        унеможливлює розшифрування. Пароль не шифрується, а хешується PBKDF2-SHA-256 із сіллю.</p>
+    </section>
+
+    <section class="card">
+      <h2>Спробуйте самі</h2>
+      <label>Текст для шифрування
+        <input type="text" id="demoText" value="Привіт, SecureApp!">
+      </label>
+      <div class="row">
+        <button class="btn" id="encryptBtn">Зашифрувати</button>
+        <button class="btn secondary" id="decryptBtn">Розшифрувати</button>
+      </div>
+      <pre id="demoOut" class="raw"></pre>
+    </section>
+  </main>
+
+  <script src="js/crypto.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/user.js"></script>
+</body>
+</html>
